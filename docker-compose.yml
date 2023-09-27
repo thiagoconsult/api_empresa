@@ -1,0 +1,23 @@
+version: "3"
+
+volumes:
+  api:
+
+services:
+  microservice-1:
+    container_name: empresa
+    build:
+      context: .
+    stop_signal: SIGINT
+    ports:
+      - "5001:5001"
+    volumes:
+      - api:/api
+    restart: always
+    networks:
+      - mvp3
+    command: ["python", "run.py"]
+
+networks:
+  mvp3:
+    driver: bridge
