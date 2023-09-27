@@ -10,7 +10,8 @@ from api.empresa_services import (
     service_empresa_update,
     service_empresa_delete,
     service_empresa_get_by_id,
-    service_empresa_get_all
+    service_empresa_get_all,
+    service_empresa_get_count
 )
 
 
@@ -104,3 +105,17 @@ def empresa_get_by_id(query: EmpresaByIdSchema):
 )
 def empresa_get_all():
     return service_empresa_get_all()
+
+
+#######################################################################
+# GET - Consulta quantidade de Empresas
+#######################################################################
+
+
+@api.get(
+    '/empresa/count',
+    summary='Consulta quantidade de empresas cadastradas',
+    description='Rota para consulta de quantidade de empresas cadastradas'
+)
+def empresa_get_count():
+    return service_empresa_get_count()

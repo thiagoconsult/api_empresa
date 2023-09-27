@@ -116,3 +116,24 @@ def service_empresa_get_all():
             return {'err': 'Nenhuma empresa encontrada'}, 404
 
         return serialize_empresa_list(empresas), 200
+
+
+#######################################################################
+# GET - Serviço para Consulta Quantidade de Empresas
+#######################################################################
+
+
+def service_empresa_get_count():
+    with Session(engine) as session:
+        empresas = session.query(Empresa).all()
+
+        # if not empresas:
+        #     return {'err': 'Nenhuma empresa encontrada'}, 404
+
+        quantidade = 0
+
+        for empresa in empresas:
+            quantidade += 1
+            print(quantidade)
+
+        return {'quantidade': quantidade}
